@@ -1,0 +1,29 @@
+# robots.txt for The Visibility Shift
+# https://the-visibility-shift.com
+
+# Standard crawlers
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# AI Crawlers - EXPLICITLY ALLOWED (important for GEO!)
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Anthropic-ai
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# Sitemap
+Sitemap: https://the-visibility-shift.com/sitemap.xml
