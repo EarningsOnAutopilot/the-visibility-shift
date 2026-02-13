@@ -1,15 +1,30 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-
-export const metadata: Metadata = {
-  title: "Cookie-Richtlinie",
-  description: "Cookie-Richtlinie für the-visibility-shift.com – Informationen zu verwendeten Cookies und Tracking.",
-  robots: { index: true, follow: true },
-};
+import { Link } from 'react-router-dom'
+import { useEffect, useRef } from 'react'
 
 export default function Cookies() {
+  const cookieDeclarationRef = useRef(null)
+
+  useEffect(() => {
+    document.title = 'Cookie-Richtlinie | The Visibility Shift'
+  }, [])
+
+  useEffect(() => {
+    if (cookieDeclarationRef.current) {
+      const script = document.createElement('script')
+      script.id = 'CookieDeclaration'
+      script.src = 'https://consent.cookiebot.com/69c9eeeb-3694-46d7-a1ca-64e07c517b79/cd.js'
+      script.async = true
+      cookieDeclarationRef.current.appendChild(script)
+      return () => {
+        if (script.parentNode) {
+          script.parentNode.removeChild(script)
+        }
+      }
+    }
+  }, [])
+
   return (
-    <>
+    <div className="min-h-screen bg-[#0a1a1f] text-slate-200">
       {/* Navigation */}
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0,
@@ -17,7 +32,7 @@ export default function Cookies() {
         background: 'rgba(10, 26, 31, 0.95)', backdropFilter: 'blur(10px)',
         borderBottom: '1px solid rgba(160, 124, 58, 0.1)', zIndex: 1000
       }}>
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
           <svg width="32" height="32" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="46" fill="none" stroke="#a07c3a" strokeWidth="4" opacity="0.4"/>
             <circle cx="50" cy="50" r="32" fill="none" stroke="#a07c3a" strokeWidth="4"/>
@@ -58,38 +73,21 @@ export default function Cookies() {
 
         <h2>§ 4 Detaillierte Cookie-Übersicht</h2>
 
-        <div style={{ overflowX: 'auto', marginTop: '16px' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
-            <thead>
-              <tr style={{ borderBottom: '2px solid rgba(160, 124, 58, 0.3)' }}>
-                <th style={{ padding: '12px', textAlign: 'left', color: '#a07c3a' }}>Dienst</th>
-                <th style={{ padding: '12px', textAlign: 'left', color: '#a07c3a' }}>Cookie-Name</th>
-                <th style={{ padding: '12px', textAlign: 'left', color: '#a07c3a' }}>Kategorie</th>
-                <th style={{ padding: '12px', textAlign: 'left', color: '#a07c3a' }}>Speicherdauer</th>
-              </tr>
-            </thead>
-            <tbody style={{ color: '#7a9a9e' }}>
-              <tr style={{ borderBottom: '1px solid rgba(160, 124, 58, 0.1)' }}>
-                <td style={{ padding: '12px' }}>Cookiebot</td>
-                <td style={{ padding: '12px' }}>CookieConsent</td>
-                <td style={{ padding: '12px' }}>Notwendig</td>
-                <td style={{ padding: '12px' }}>12 Monate</td>
-              </tr>
-              <tr style={{ borderBottom: '1px solid rgba(160, 124, 58, 0.1)' }}>
-                <td style={{ padding: '12px' }}>Google Analytics 4</td>
-                <td style={{ padding: '12px' }}>_ga, _ga_[ID]</td>
-                <td style={{ padding: '12px' }}>Statistik</td>
-                <td style={{ padding: '12px' }}>2 Jahre</td>
-              </tr>
-              <tr style={{ borderBottom: '1px solid rgba(160, 124, 58, 0.1)' }}>
-                <td style={{ padding: '12px' }}>LinkedIn</td>
-                <td style={{ padding: '12px' }}>li_sugr, bcookie, lidc</td>
-                <td style={{ padding: '12px' }}>Marketing</td>
-                <td style={{ padding: '12px' }}>30 Tage - 2 Jahre</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <div ref={cookieDeclarationRef} style={{ marginTop: '16px', marginBottom: '24px' }}></div>
+
+        <p style={{ fontSize: '14px', color: '#5a7a7e', marginTop: '16px' }}>
+          Die obige Liste wird automatisch von Cookiebot generiert und aktualisiert.
+        </p>
+
+        <h2>§ 4a Eingebettete Dienste</h2>
+
+        <h3 style={{ fontSize: '18px', marginTop: '24px' }}>meetergo (Online-Terminvergabe)</h3>
+        <p>Für die Online-Terminvergabe nutzen wir meetergo. Beim Laden des eingebetteten Buchungswidgets kann meetergo technisch notwendige Cookies setzen, um den Buchungsprozess zu ermöglichen.</p>
+        <p>Rechtsgrundlage: Berechtigtes Interesse (Art. 6 Abs. 1 lit. f DSGVO)<br /><strong>Anbieter:</strong> meetergo GmbH, Hauptstr. 44, 40789 Monheim am Rhein, Deutschland</p>
+
+        <h3 style={{ fontSize: '18px', marginTop: '24px' }}>Tally.so (Kontaktformulare)</h3>
+        <p>Für unsere Kontaktformulare (z.B. Blindspot-Check, Angebotsanfragen) nutzen wir Tally. Die Formulare werden als Iframe eingebettet. Tally kann dabei technisch notwendige Cookies setzen, um die Formularfunktion sicherzustellen. Es werden keine Tracking- oder Marketing-Cookies durch Tally gesetzt.</p>
+        <p>Rechtsgrundlage: Berechtigtes Interesse (Art. 6 Abs. 1 lit. f DSGVO) bzw. Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO)<br /><strong>Anbieter:</strong> Tally NV, Brüssel, Belgien<br /><strong>Serverstandort:</strong> EU (Belgien)<br /><strong>Datenschutzerklärung:</strong> <a href="https://tally.so/help/privacy-policy" target="_blank" rel="noopener noreferrer">tally.so/help/privacy-policy</a></p>
 
         <h2>§ 5 Cookies verwalten und löschen</h2>
         <p><strong>Über unsere Website:</strong> Klicken Sie auf &quot;Cookie-Einstellungen&quot; im Footer.</p>
@@ -116,12 +114,12 @@ export default function Cookies() {
       {/* Footer */}
       <footer style={{ padding: '32px 64px', borderTop: '1px solid rgba(160, 124, 58, 0.1)', textAlign: 'center' }}>
         <div style={{ display: 'flex', justifyContent: 'center', gap: '32px', fontSize: '14px' }}>
-          <Link href="/impressum" className="nav-link">Impressum</Link>
-          <Link href="/datenschutz" className="nav-link">Datenschutz</Link>
-          <Link href="/cookies" className="nav-link">Cookies</Link>
+          <Link to="/impressum" className="nav-link">Impressum</Link>
+          <Link to="/datenschutz" className="nav-link">Datenschutz</Link>
+          <Link to="/cookies" className="nav-link">Cookies</Link>
         </div>
-        <p style={{ marginTop: '16px', fontSize: '12px', color: '#5a7a7e' }}>© 2025 The Visibility Shift – NEELTIZ CONSULTING - FZCO</p>
+        <p style={{ marginTop: '16px', fontSize: '12px', color: '#5a7a7e' }}>© 2026 The Visibility Shift – NEELTIZ CONSULTING - FZCO</p>
       </footer>
-    </>
-  );
+    </div>
+  )
 }

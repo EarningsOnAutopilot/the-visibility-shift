@@ -1,33 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  /* Brand Colors - The Visibility Shift */
-  --gold-primary: #a07c3a;
-  --gold-light: #c9a227;
-  --petrol-dark: #0a1a1f;
-  --petrol-medium: #0f2a32;
-  --petrol-light: #1a3d47;
+  /* Background Colors */
+  --bg-primary: #0a1a1f;
+  --bg-secondary: #0f2a32;
 
   /* Text Colors */
   --text-primary: #e2e8f0;
   --text-secondary: #7a9a9e;
   --text-muted: #5a7a7e;
 
-  /* Background */
-  --background: #0a1a1f;
-  --foreground: #e2e8f0;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-gold: var(--gold-primary);
-  --color-gold-light: var(--gold-light);
-  --color-petrol: var(--petrol-dark);
-  --color-petrol-medium: var(--petrol-medium);
-  --font-sans: 'Poppins', sans-serif;
-  --font-mono: 'Space Mono', monospace;
+  /* Gold Accent Colors */
+  --gold-accent: #a07c3a;
+  --gold-dark: #a07c3a;
 }
 
 * {
@@ -41,32 +28,32 @@ html {
 }
 
 body {
-  background: linear-gradient(180deg, var(--petrol-dark) 0%, var(--petrol-medium) 100%);
-  color: var(--foreground);
+  background: var(--bg-primary);
+  color: var(--text-primary);
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
 }
 
 /* Utility Classes */
 .gradient-text {
-  background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-light) 100%);
+  background: linear-gradient(135deg, var(--gold-accent) 0%, var(--gold-dark) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gold-text {
-  color: var(--gold-primary);
+  color: var(--gold-accent);
 }
 
 .glow {
-  box-shadow: 0 0 40px rgba(201, 162, 39, 0.08), 0 0 80px rgba(201, 162, 39, 0.03);
+  box-shadow: 0 0 40px rgba(160, 124, 58, 0.08), 0 0 80px rgba(160, 124, 58, 0.03);
 }
 
 /* Button Styles */
 .btn-primary {
-  background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-primary) 100%);
-  color: var(--petrol-dark);
+  background: var(--gold-accent);
+  color: var(--bg-primary);
   padding: 16px 32px;
   border: none;
   border-radius: 8px;
@@ -82,15 +69,16 @@ body {
 }
 
 .btn-primary:hover {
+  background: #ab8741;
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(201, 162, 39, 0.30);
+  box-shadow: 0 8px 30px rgba(160, 124, 58, 0.35);
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--gold-primary);
+  color: var(--gold-accent);
   padding: 16px 32px;
-  border: 1px solid var(--gold-primary);
+  border: 1px solid var(--gold-accent);
   border-radius: 8px;
   font-weight: 500;
   font-size: 16px;
@@ -104,13 +92,13 @@ body {
 }
 
 .btn-secondary:hover {
-  background: rgba(201, 162, 39, 0.1);
+  background: rgba(160, 124, 58, 0.1);
 }
 
 /* Card Styles */
 .card {
   background: rgba(15, 42, 50, 0.6);
-  border: 1px solid rgba(201, 162, 39, 0.15);
+  border: 1px solid rgba(160, 124, 58, 0.15);
   border-radius: 16px;
   padding: 32px;
   backdrop-filter: blur(10px);
@@ -118,15 +106,15 @@ body {
 }
 
 .card:hover {
-  border-color: rgba(201, 162, 39, 0.35);
+  border-color: rgba(160, 124, 58, 0.35);
   transform: translateY(-4px);
 }
 
 /* Section Label */
 .section-label {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Poppins', sans-serif;
   font-size: 12px;
-  color: var(--gold-primary);
+  color: var(--gold-accent);
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 16px;
@@ -143,8 +131,86 @@ body {
   content: '';
   width: 6px;
   height: 6px;
-  background: var(--gold-primary);
+  background: var(--gold-accent);
   border-radius: 50%;
+}
+
+/* Scenario Card */
+.scenario-card {
+  background: rgba(15, 42, 50, 0.4);
+  border: 1px solid rgba(160, 124, 58, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.3s ease;
+}
+
+.scenario-card:hover {
+  border-color: rgba(160, 124, 58, 0.3);
+  background: rgba(15, 42, 50, 0.6);
+}
+
+/* Package Card */
+.package-card {
+  background: rgba(15, 42, 50, 0.5);
+  border: 1px solid rgba(160, 124, 58, 0.15);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.package-card:hover {
+  border-color: rgba(160, 124, 58, 0.35);
+}
+
+.package-card.featured {
+  border: 2px solid var(--gold-accent);
+  background: linear-gradient(180deg, rgba(160, 124, 58, 0.08) 0%, rgba(15, 42, 50, 0.6) 100%);
+}
+
+.featured-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold-accent);
+  color: var(--bg-primary);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 16px;
+  border-radius: 12px;
+  letter-spacing: 1px;
+}
+
+/* FAQ Styles */
+.faq-item {
+  border-bottom: 1px solid rgba(160, 124, 58, 0.1);
+  padding: 20px 0;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-answer.open {
+  max-height: 500px;
+  padding-top: 16px;
+}
+
+/* Micro Copy */
+.micro-copy {
+  font-size: 12px;
+  color: var(--text-muted);
 }
 
 /* Animations */
@@ -163,14 +229,21 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
 .slide-in-left { animation: slideInLeft 0.8s ease forwards; }
 .slide-in-right { animation: slideInRight 0.8s ease forwards; }
 .animate-in { animation: fadeInUp 0.8s ease forwards; }
+.animate-float { animation: float 3s ease-in-out infinite; }
 
 .delay-1 { animation-delay: 0.1s; opacity: 0; }
 .delay-2 { animation-delay: 0.2s; opacity: 0; }
 .delay-3 { animation-delay: 0.3s; opacity: 0; }
 .delay-4 { animation-delay: 0.4s; opacity: 0; }
+.delay-5 { animation-delay: 0.5s; opacity: 0; }
 
 /* Navigation */
 .nav-link {
@@ -181,7 +254,7 @@ body {
 }
 
 .nav-link:hover {
-  color: var(--gold-primary);
+  color: var(--gold-accent);
 }
 
 /* Legal Pages */
@@ -213,7 +286,7 @@ body {
 }
 
 .legal-content a {
-  color: var(--gold-primary);
+  color: var(--gold-accent);
   text-decoration: underline;
 }
 

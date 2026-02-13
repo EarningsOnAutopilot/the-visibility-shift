@@ -1,15 +1,13 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-
-export const metadata: Metadata = {
-  title: "Impressum",
-  description: "Impressum der NEELTIZ CONSULTING - FZCO, handelnd unter der Marke The Visibility Shift.",
-  robots: { index: true, follow: true },
-};
+import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export default function Impressum() {
+  useEffect(() => {
+    document.title = 'Impressum | The Visibility Shift'
+  }, [])
+
   return (
-    <>
+    <div className="min-h-screen bg-[#0a1a1f] text-slate-200">
       {/* Navigation */}
       <nav style={{
         position: 'fixed',
@@ -25,7 +23,7 @@ export default function Impressum() {
         borderBottom: '1px solid rgba(160, 124, 58, 0.1)',
         zIndex: 1000
       }}>
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
           <svg width="32" height="32" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="46" fill="none" stroke="#a07c3a" strokeWidth="4" opacity="0.4"/>
             <circle cx="50" cy="50" r="32" fill="none" stroke="#a07c3a" strokeWidth="4"/>
@@ -41,12 +39,12 @@ export default function Impressum() {
         <h2>Angaben gemäß § 5 TMG / DDG</h2>
         <p>
           <strong>NEELTIZ CONSULTING - FZCO</strong><br />
-          handelnd unter der Marke <strong>The Visibility Shift</strong><br /><br />
+          handelnd unter der Marke <strong>TheVisibilityShift</strong><br /><br />
           Building A1, Dubai Digital Park<br />
           Dubai Silicon Oasis<br />
           P.O. Box 342001<br />
           Dubai, Vereinigte Arabische Emirate<br /><br />
-          UAE Trade License Number: 69253
+          <strong>UAE Trade License Number:</strong> 69253
         </p>
 
         <h2>Kontakt</h2>
@@ -62,7 +60,7 @@ export default function Impressum() {
           1010 Wien<br />
           Österreich<br /><br />
           Kontakt für Datenschutzanfragen:<br />
-          <a href="https://prighter.com/q/16905952" target="_blank" rel="noopener noreferrer">https://prighter.com/q/16905952</a>
+          <a href="https://app.prighter.com/portal/18615566844" target="_blank" rel="noopener noreferrer">https://app.prighter.com/portal/18615566844</a>
         </p>
 
         <h2>Verantwortlich für den Inhalt gemäß § 18 Abs. 2 MStV</h2>
@@ -103,7 +101,7 @@ export default function Impressum() {
           Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
         </p>
 
-        <p style={{ marginTop: '48px', fontSize: '14px', color: '#5a7a7e' }}>Stand: Januar 2025</p>
+        <p style={{ marginTop: '48px', fontSize: '14px', color: '#5a7a7e' }}>Stand: Januar 2026</p>
       </div>
 
       {/* Footer */}
@@ -113,14 +111,14 @@ export default function Impressum() {
         textAlign: 'center'
       }}>
         <div style={{ display: 'flex', justifyContent: 'center', gap: '32px', fontSize: '14px' }}>
-          <Link href="/impressum" className="nav-link">Impressum</Link>
-          <Link href="/datenschutz" className="nav-link">Datenschutz</Link>
-          <Link href="/cookies" className="nav-link">Cookies</Link>
+          <Link to="/impressum" className="nav-link">Impressum</Link>
+          <Link to="/datenschutz" className="nav-link">Datenschutz</Link>
+          <Link to="/cookies" className="nav-link">Cookies</Link>
         </div>
         <p style={{ marginTop: '16px', fontSize: '12px', color: '#5a7a7e' }}>
-          © 2025 The Visibility Shift – NEELTIZ CONSULTING - FZCO
+          © 2026 The Visibility Shift – NEELTIZ CONSULTING - FZCO
         </p>
       </footer>
-    </>
-  );
+    </div>
+  )
 }
