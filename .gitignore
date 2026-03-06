@@ -32,7 +32,7 @@ angebot-form-prototyp.html
 blindspot-form-prototyp.html
 _backup/
 .claude/
-docs/
+design-reference/
 
 # typescript
 *.tsbuildinfo
